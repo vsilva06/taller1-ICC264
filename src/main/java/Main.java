@@ -12,32 +12,34 @@ public class Main {
         while (true) {
             mostarMenu();
             var option = leerOpcion();
-            switch (option) {
-                case "b":
-                    var decimal = leerNumero();
-                    if (!validarNumero(decimal)) {
-                        System.out.println("Numero ingresado se encuentra fuera de rango");
-                        continue;
-                    }
-                    imprimirNumBinario8Bits(convetirBinario8Bits(decimal));
-                    break;
-                case "d":
-                    var binario = leerNumero();
-                    var arrBinario = convertirIntBinarioAArray(binario);
-                    if (!validarBinario8Bits(arrBinario)) {
-                        System.out.println("Error!");
-                        continue;
-                    }
-                    imprimirNumDecimal(convertirEntero(arrBinario));
-                    break;
-                case "s":
-                    return;
-                default:
-                    System.out.println("La opcion ingresada es incorrecta");
-            }
+            manejarOpciones(option);
         }
 
     } // inicializa ejecucion del programa
+
+    public static void manejarOpciones(String option) {
+        switch (option) {
+            case "b":
+                var decimal = leerNumero();
+                if (!validarNumero(decimal)) {
+                    System.out.println("Numero ingresado se encuentra fuera de rango");
+                }
+                imprimirNumBinario8Bits(convetirBinario8Bits(decimal));
+                break;
+            case "d":
+                var binario = leerNumero();
+                var arrBinario = convertirIntBinarioAArray(binario);
+                if (!validarBinario8Bits(arrBinario)) {
+                    System.out.println("Error!");
+                }
+                imprimirNumDecimal(convertirEntero(arrBinario));
+                break;
+            case "s":
+                return;
+            default:
+                System.out.println("La opcion ingresada es incorrecta");
+        }
+    }
 
     public static int[] convertirIntBinarioAArray(int binario) {
         var strBinario = Integer.toString(binario).split("");
